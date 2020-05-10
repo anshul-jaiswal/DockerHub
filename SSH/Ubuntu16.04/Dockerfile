@@ -10,10 +10,11 @@ ENV   RootUser=${RootUser}
 ENV   RootPassword=${RootPassword}
 
 # Installing Required Packages
-RUN apt-get update \
-    && apt-get upgrade -y \
-    && apt-get install -y \
-       openssh-server 
+#RUN apt-get update \
+#    && apt-get upgrade -y \
+#    && apt-get install -y \
+#       openssh-server 
+RUN apt-get install openssh-server
 
 RUN mkdir /var/run/sshd \
     && echo ${RootUser}:${RootPassword} | chpasswd \
@@ -22,7 +23,7 @@ RUN mkdir /var/run/sshd \
     && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd \
     && apt-get autoremove \
     && apt-get clean  \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archives 
     
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]

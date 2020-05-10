@@ -22,7 +22,7 @@ RUN mkdir /var/run/sshd \
     && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd \
     && apt-get autoremove \
     && apt-get clean  \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archives
         
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
