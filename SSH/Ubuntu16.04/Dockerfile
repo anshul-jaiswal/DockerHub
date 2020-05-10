@@ -10,11 +10,10 @@ ENV   RootUser=${RootUser}
 ENV   RootPassword=${RootPassword}
 
 # Installing Required Packages
-#RUN apt-get update \
-#    && apt-get upgrade -y \
-#    && apt-get install -y \
-#       openssh-server 
-RUN apt-get install openssh-server
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && apt-get install -y \
+       openssh-server 
 
 RUN mkdir /var/run/sshd \
     && echo ${RootUser}:${RootPassword} | chpasswd \
