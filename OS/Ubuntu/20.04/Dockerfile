@@ -26,13 +26,13 @@ ENV     RootUser=${RootUser} \
 
 RUN apt-get update \
     && apt-get install -y  --no-install-recommends \
-      curl \
+      #curl \
       git \
       openssh-server \
       subversion \
-      sudo \
-      vim \
-      wget 
+      sudo 
+      #vim \
+      #wget 
 
 # Creating Custom User
 # Same thing can be obtained by following 3 approaches
