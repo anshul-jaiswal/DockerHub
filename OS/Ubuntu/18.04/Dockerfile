@@ -1,7 +1,5 @@
-#MAINTAINER Anshul Jaiswal <anshul.a.jaiswal@gmail.com>
 # This Image is created for ease of use for developers, This image can be used for earlier stage of production
 #
-
 FROM ubuntu:18.04
 
 LABEL MAINTAINER=anshul.a.jaiswal@gmail.com
@@ -24,19 +22,17 @@ ENV     RootUser=${RootUser} \
         CustomUserHome=${CustomUserHome} \
         OptVolume=${OptVolume}
 
-
 # Installing Required Packages
 
 RUN apt-get update \
-  && apt-get upgrade -y \
-  && apt-get install -y --no-install-recommends \
-      curl \
+    && apt-get install -y  --no-install-recommends \
+      #curl \
       git \
       openssh-server \
       subversion \
-      sudo \
-      vim \
-      wget 
+      sudo 
+      #vim \
+      #wget 
 
 # Creating Custom User
 # Same thing can be obtained by following 3 approaches
@@ -78,6 +74,8 @@ RUN mkdir /var/run/sshd \
     && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd \
     && apt-get autoremove \
     && apt-get clean  \
+    && chown -R ${CustomUser}:${CustomGroup} ${OptVolume} \
+    && chown -R ${CustomUser}:${CustomGroup} ${CustomUserHome} \    
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archives 
     
 EXPOSE 22
