@@ -1,4 +1,4 @@
-FROM anshuljaiswal/ubuntu:20.04-1.0
+FROM anshuljaiswal/ubuntu:14.04-1.0
 
 ARG   RootUser=root
 ARG   RootPassword=root

@@ -1,7 +1,4 @@
-# MAINTAINER Anshul Jaiswal <anshul.a.jaiswal@gmail.com>
-# This Image is created for ease of use for developers, This image can be used for earlier stage of production
-
-FROM ubuntu:16.04
+FROM anshuljaiswal/ubuntu:16.04-1.0
 
 ARG   RootUser=root 
 ARG   RootPassword=root

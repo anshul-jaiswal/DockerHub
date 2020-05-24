@@ -1,19 +1,16 @@
-# MAINTAINER Anshul Jaiswal <anshul.a.jaiswal@gmail.com>
-# This Image is created for ease of use for developers, This image can be used for earlier stage of production
+FROM anshuljaiswal/ubuntu:18.04-1.0
 
-FROM ubuntu:18.04
-
-ARG   RootUser=root 
+ARG   RootUser=root
 ARG   RootPassword=root
 
-ENV   RootUser=${RootUser} 
+ENV   RootUser=${RootUser}
 ENV   RootPassword=${RootPassword}
 
 # Installing Required Packages
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y \
-       openssh-server 
+       openssh-server
 
 RUN mkdir /var/run/sshd \
     && echo ${RootUser}:${RootPassword} | chpasswd \
@@ -23,6 +20,6 @@ RUN mkdir /var/run/sshd \
     && apt-get autoremove \
     && apt-get clean  \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archives
-        
+
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
