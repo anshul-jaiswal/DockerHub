@@ -1,6 +1,7 @@
-# This Image is created for ease of use for developers, This image can be used for earlier stage of production
+# This Image is created to use same base image for future Images
 #
 FROM ubuntu:16.04
 
 LABEL MAINTAINER=anshul.a.jaiswal@gmail.com
 
+RUN echo "alias lsb_release='cat /etc/lsb-release'" >> ~/.bashrc
